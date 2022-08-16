@@ -14,14 +14,10 @@ public class SheetMetalVertCTBehaviour extends SheetMetalSlabCTBehaviour {
   @Override
   protected boolean slabTouching (BlockState state, BlockPos pos, BlockState other, BlockPos otherPos) {
     if (!other.hasProperty(BlockStateProperties.SLAB_TYPE)) return false;
-    switch (state.getValue(BlockStateProperties.SLAB_TYPE)) {
-      case TOP:
-        return other.getValue(BlockStateProperties.SLAB_TYPE).equals(SlabType.TOP);
-      case BOTTOM:
-        return other.getValue(BlockStateProperties.SLAB_TYPE).equals(SlabType.BOTTOM);
-      case DOUBLE:
-        return true;
-    }
-    return false;
+    return switch (state.getValue(BlockStateProperties.SLAB_TYPE)) {
+      case TOP -> other.getValue(BlockStateProperties.SLAB_TYPE).equals(SlabType.TOP);
+      case BOTTOM -> other.getValue(BlockStateProperties.SLAB_TYPE).equals(SlabType.BOTTOM);
+      case DOUBLE -> true;
+    };
   }
 }
