@@ -4,15 +4,16 @@ import com.github.talrey.createdeco.blocks.*;
 import com.github.talrey.createdeco.registry.*;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllTags;
-import com.tterrag.registrate.Registrate;
-import com.tterrag.registrate.builders.BlockBuilder;
-import com.tterrag.registrate.util.DataIngredient;
-import com.tterrag.registrate.util.entry.BlockEntry;
-import com.tterrag.registrate.util.entry.ItemEntry;
+import com.simibubi.create.repack.registrate.Registrate;
+import com.simibubi.create.repack.registrate.builders.BlockBuilder;
+import com.simibubi.create.repack.registrate.util.DataIngredient;
+import com.simibubi.create.repack.registrate.util.entry.BlockEntry;
+import com.simibubi.create.repack.registrate.util.entry.ItemEntry;
 
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.*;
@@ -28,45 +29,45 @@ import java.util.function.Supplier;
 
 public class Registration {
 
-  private static final HashMap<DyeColor, String> BRICK_COLOR_NAMES          = new HashMap<>();
+  private static HashMap<DyeColor, String> BRICK_COLOR_NAMES          = new HashMap<>();
 
-  private static final HashMap<String, Function<String, Item>> DOOR_TYPES   = new HashMap<>();
-  public static final HashMap<String, Function<String, Item>> METAL_TYPES   = new HashMap<>();
+  private static HashMap<String, Function<String, Item>> DOOR_TYPES   = new HashMap<>();
+  public static HashMap<String, Function<String, Item>> METAL_TYPES   = new HashMap<>();
 
   public static ItemEntry<Item> WORN_BRICK_ITEM;
-  public static final HashMap<String,   BlockEntry<Block>> WORN_BRICK_TYPES       = new HashMap<>();
-  public static final HashMap<String,   BlockEntry<StairBlock>> WORN_STAIRS       = new HashMap<>();
-  public static final HashMap<String,   BlockEntry<SlabBlock>> WORN_SLABS         = new HashMap<>();
-  public static final HashMap<String,   BlockEntry<VerticalSlabBlock>> WORN_VERTS = new HashMap<>();
-  public static final HashMap<String,   BlockEntry<WallBlock>> WORN_WALLS         = new HashMap<>();
+  public static HashMap<String,   BlockEntry<Block>> WORN_BRICK_TYPES       = new HashMap<>();
+  public static HashMap<String,   BlockEntry<StairBlock>> WORN_STAIRS       = new HashMap<>();
+  public static HashMap<String,   BlockEntry<SlabBlock>> WORN_SLABS         = new HashMap<>();
+  public static HashMap<String,   BlockEntry<VerticalSlabBlock>> WORN_VERTS = new HashMap<>();
+  public static HashMap<String,   BlockEntry<WallBlock>> WORN_WALLS         = new HashMap<>();
 
-  public static final HashMap<DyeColor, BlockEntry<Block>> BRICK_BLOCK         = new HashMap<>();
-  public static final HashMap<DyeColor, BlockEntry<Block>> TILE_BRICK_BLOCK    = new HashMap<>();
-  public static final HashMap<DyeColor, BlockEntry<Block>> LONG_BRICK_BLOCK    = new HashMap<>();
-  public static final HashMap<DyeColor, BlockEntry<Block>> SHORT_BRICK_BLOCK   = new HashMap<>();
-  public static final HashMap<DyeColor, BlockEntry<Block>> CRACKED_BRICK_BLOCK = new HashMap<>();
-  public static final HashMap<DyeColor, BlockEntry<Block>> CRACKED_TILE_BLOCK  = new HashMap<>();
-  public static final HashMap<DyeColor, BlockEntry<Block>> CRACKED_LONG_BLOCK  = new HashMap<>();
-  public static final HashMap<DyeColor, BlockEntry<Block>> CRACKED_SHORT_BLOCK = new HashMap<>();
-  public static final HashMap<DyeColor, BlockEntry<Block>> MOSSY_BRICK_BLOCK   = new HashMap<>();
-  public static final HashMap<DyeColor, BlockEntry<Block>> MOSSY_TILE_BLOCK    = new HashMap<>();
-  public static final HashMap<DyeColor, BlockEntry<Block>> MOSSY_LONG_BLOCK    = new HashMap<>();
-  public static final HashMap<DyeColor, BlockEntry<Block>> MOSSY_SHORT_BLOCK   = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> BRICK_BLOCK         = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> TILE_BRICK_BLOCK    = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> LONG_BRICK_BLOCK    = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> SHORT_BRICK_BLOCK   = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> CRACKED_BRICK_BLOCK = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> CRACKED_TILE_BLOCK  = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> CRACKED_LONG_BLOCK  = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> CRACKED_SHORT_BLOCK = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> MOSSY_BRICK_BLOCK   = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> MOSSY_TILE_BLOCK    = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> MOSSY_LONG_BLOCK    = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<Block>> MOSSY_SHORT_BLOCK   = new HashMap<>();
 
-  public static final HashMap<DyeColor, HashMap<String,BlockEntry<StairBlock>>> BRICK_STAIRS_BLOCK      = new HashMap<>();
-  public static final HashMap<DyeColor, HashMap<String,BlockEntry<SlabBlock>>> BRICK_SLAB_BLOCK         = new HashMap<>();
-  public static final HashMap<DyeColor, HashMap<String,BlockEntry<VerticalSlabBlock>>> BRICK_VERT_BLOCK = new HashMap<>();
-  public static final HashMap<DyeColor, HashMap<String,BlockEntry<WallBlock>>> BRICK_WALL_BLOCK         = new HashMap<>();
+  public static HashMap<DyeColor, HashMap<String,BlockEntry<StairBlock>>> BRICK_STAIRS_BLOCK      = new HashMap<>();
+  public static HashMap<DyeColor, HashMap<String,BlockEntry<SlabBlock>>> BRICK_SLAB_BLOCK         = new HashMap<>();
+  public static HashMap<DyeColor, HashMap<String,BlockEntry<VerticalSlabBlock>>> BRICK_VERT_BLOCK = new HashMap<>();
+  public static HashMap<DyeColor, HashMap<String,BlockEntry<WallBlock>>> BRICK_WALL_BLOCK         = new HashMap<>();
 
-  public static final HashMap<String, BlockEntry<DoorBlock>> DOOR_BLOCKS          = new HashMap<>();
-  public static final HashMap<String, BlockEntry<DoorBlock>> LOCK_DOOR_BLOCKS     = new HashMap<>();
-  public static final HashMap<String, BlockEntry<IronBarsBlock>> BAR_BLOCKS       = new HashMap<>();
-  public static final HashMap<String, BlockEntry<IronBarsBlock>> BAR_PANEL_BLOCKS = new HashMap<>();
+  public static HashMap<String, BlockEntry<DoorBlock>> DOOR_BLOCKS          = new HashMap<>();
+  public static HashMap<String, BlockEntry<DoorBlock>> LOCK_DOOR_BLOCKS     = new HashMap<>();
+  public static HashMap<String, BlockEntry<IronBarsBlock>> BAR_BLOCKS       = new HashMap<>();
+  public static HashMap<String, BlockEntry<IronBarsBlock>> BAR_PANEL_BLOCKS = new HashMap<>();
 
-  public static final HashMap<String, BlockEntry<FenceBlock>> MESH_FENCE_BLOCKS = new HashMap<>();
-  public static final HashMap<String, BlockEntry<CatwalkBlock>> CATWALK_BLOCKS  = new HashMap<>();
+  public static HashMap<String, BlockEntry<FenceBlock>> MESH_FENCE_BLOCKS = new HashMap<>();
+  public static HashMap<String, BlockEntry<CatwalkBlock>> CATWALK_BLOCKS  = new HashMap<>();
 
-  public static final HashMap<DyeColor, ItemEntry<Item>> BRICK_ITEM            = new HashMap<>();
+  public static HashMap<DyeColor, ItemEntry<Item>> BRICK_ITEM            = new HashMap<>();
 
   public static ItemEntry<Item> ZINC_SHEET;
   public static ItemEntry<Item> NETHERITE_SHEET;
@@ -489,28 +490,34 @@ public class Registration {
       .register();
 
     NETHERITE_SHEET = reg.item("netherite_sheet", Item::new)
-      .properties(Item.Properties::fireResistant)
+      .properties(p -> p.fireResistant())
       .tag(makeItemTag("plates/netherite"))
       .lang("Netherite Sheet")
       .register();
 
     NETHERITE_NUGGET = reg.item("netherite_nugget", Item::new)
-      .properties(Item.Properties::fireResistant)
+      .properties(p -> p.fireResistant())
       .tag(makeItemTag("nuggets/netherite"))
       .lang("Netherite Nugget")
-      .recipe((ctx, prov)-> prov.storage(ctx, ()->Items.NETHERITE_INGOT))
+      .recipe((ctx, prov)-> {
+        prov.storage(ctx, ()->Items.NETHERITE_INGOT);
+      })
       .register();
 
     CAST_IRON_NUGGET = reg.item("cast_iron_nugget", Item::new)
       .tag(makeItemTag("nuggets/cast_iron"))
       .lang("Cast Iron Nugget")
-      .recipe((ctx, prov)-> prov.storage(ctx, ()->CAST_IRON_INGOT.get()))
+      .recipe((ctx, prov)-> {
+        prov.storage(ctx, ()->CAST_IRON_INGOT.get());
+      })
       .register();
 
     CAST_IRON_INGOT = reg.item("cast_iron_ingot", Item::new)
       .tag(makeItemTag("ingots/cast_iron"))
       .lang("Cast Iron Ingot")
-      .recipe((ctx, prov)-> prov.storage(ctx, ()->CAST_IRON_BLOCK.get().asItem()))
+      .recipe((ctx, prov)-> {
+        prov.storage(ctx, ()->CAST_IRON_BLOCK.get().asItem());
+      })
       .register();
 
     CAST_IRON_SHEET = reg.item("cast_iron_sheet", Item::new)

@@ -1,9 +1,12 @@
 package com.github.talrey.createdeco;
 
-import com.tterrag.registrate.Registrate;
-import net.minecraft.data.DataGenerator;
+import com.github.talrey.createdeco.blocks.CoinStackBlock;
+import com.simibubi.create.repack.registrate.Registrate;
+import com.simibubi.create.repack.registrate.util.entry.BlockEntry;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.RegistryEvent;
@@ -11,6 +14,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.*;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +29,7 @@ public class CreateDecoMod
 
   public static final String MODID = "createdeco";
   public static Registrate createDecoRegistrar;
-//  private static Registration registration;
+  private static Registration registration;
 
   private static ProcessingRecipeWrapper SPLASHING, PRESSING, POLISHING, COMPACTING;
 
@@ -47,9 +52,9 @@ public class CreateDecoMod
 
     createDecoRegistrar = Registrate.create(MODID);
 
-//    registration = new Registration();
-    Registration.registerItems(createDecoRegistrar);
-    Registration.registerBlocks(createDecoRegistrar);
+    registration = new Registration();
+    registration.registerItems(createDecoRegistrar);
+    registration.registerBlocks(createDecoRegistrar);
     MovementCheckHandler.register();
   }
 /*

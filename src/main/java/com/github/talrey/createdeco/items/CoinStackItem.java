@@ -1,5 +1,6 @@
 package com.github.talrey.createdeco.items;
 
+import com.github.talrey.createdeco.Registration;
 import com.github.talrey.createdeco.blocks.CoinStackBlock;
 import com.github.talrey.createdeco.registry.Props;
 import net.minecraft.world.InteractionResult;

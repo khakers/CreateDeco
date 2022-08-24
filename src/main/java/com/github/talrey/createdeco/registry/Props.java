@@ -9,11 +9,11 @@ import com.github.talrey.createdeco.items.CoinStackItem;
 import com.jozufozu.flywheel.util.NonNullSupplier;
 import com.mojang.math.Vector3f;
 import com.simibubi.create.AllItems;
-import com.tterrag.registrate.Registrate;
-import com.tterrag.registrate.builders.BlockBuilder;
-import com.tterrag.registrate.builders.ItemBuilder;
-import com.tterrag.registrate.util.entry.BlockEntry;
-import com.tterrag.registrate.util.entry.ItemEntry;
+import com.simibubi.create.repack.registrate.Registrate;
+import com.simibubi.create.repack.registrate.builders.BlockBuilder;
+import com.simibubi.create.repack.registrate.builders.ItemBuilder;
+import com.simibubi.create.repack.registrate.util.entry.BlockEntry;
+import com.simibubi.create.repack.registrate.util.entry.ItemEntry;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -36,24 +36,25 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
 public class Props {
-  public static final HashMap<DyeColor, BlockEntry<DecalBlock>> DECAL_BLOCKS = new HashMap<>();
+  public static HashMap<DyeColor, BlockEntry<DecalBlock>> DECAL_BLOCKS = new HashMap<>();
 
-  public static final HashMap<String, BlockEntry<CageLampBlock>> YELLOW_CAGE_LAMPS = new HashMap<>();
-  public static final HashMap<String, BlockEntry<CageLampBlock>>    RED_CAGE_LAMPS = new HashMap<>();
-  public static final HashMap<String, BlockEntry<CageLampBlock>>  GREEN_CAGE_LAMPS = new HashMap<>();
-  public static final HashMap<String, BlockEntry<CageLampBlock>>   BLUE_CAGE_LAMPS = new HashMap<>();
+  public static HashMap<String, BlockEntry<CageLampBlock>> YELLOW_CAGE_LAMPS = new HashMap<>();
+  public static HashMap<String, BlockEntry<CageLampBlock>>    RED_CAGE_LAMPS = new HashMap<>();
+  public static HashMap<String, BlockEntry<CageLampBlock>>  GREEN_CAGE_LAMPS = new HashMap<>();
+  public static HashMap<String, BlockEntry<CageLampBlock>>   BLUE_CAGE_LAMPS = new HashMap<>();
 
-  public static final HashMap<String, ItemEntry<Item>> COIN_ITEM               = new HashMap<>();
-  public static final HashMap<String, ItemEntry<CoinStackItem>> COINSTACK_ITEM = new HashMap<>();
-  public static final HashMap<String, BlockEntry<CoinStackBlock>> COIN_BLOCKS  = new HashMap<>();
+  public static HashMap<String, ItemEntry<Item>> COIN_ITEM               = new HashMap<>();
+  public static HashMap<String, ItemEntry<CoinStackItem>> COINSTACK_ITEM = new HashMap<>();
+  public static HashMap<String, BlockEntry<CoinStackBlock>> COIN_BLOCKS  = new HashMap<>();
 
-  public static final ArrayList<String> COIN_TYPES = new ArrayList<>();
+  public static ArrayList<String> COIN_TYPES = new ArrayList<>();
 
   public static final ResourceLocation YELLOW_ON  = new ResourceLocation(CreateDecoMod.MODID, "block/palettes/cage_lamp/light_default");
   public static final ResourceLocation YELLOW_OFF = new ResourceLocation(CreateDecoMod.MODID, "block/palettes/cage_lamp/light_default_off");

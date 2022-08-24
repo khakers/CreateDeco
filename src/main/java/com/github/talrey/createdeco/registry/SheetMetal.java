@@ -10,10 +10,10 @@ import com.github.talrey.createdeco.connected.SpriteShifts;
 import com.jozufozu.flywheel.util.NonNullSupplier;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.tterrag.registrate.Registrate;
-import com.tterrag.registrate.builders.BlockBuilder;
-import com.tterrag.registrate.util.DataIngredient;
-import com.tterrag.registrate.util.entry.BlockEntry;
+import com.simibubi.create.repack.registrate.Registrate;
+import com.simibubi.create.repack.registrate.builders.BlockBuilder;
+import com.simibubi.create.repack.registrate.util.DataIngredient;
+import com.simibubi.create.repack.registrate.util.entry.BlockEntry;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Direction;
@@ -33,17 +33,19 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.function.Function;
 
 public class SheetMetal {
-  public static final HashMap<String, BlockEntry<Block>> SHEET_METAL_BLOCKS           = new HashMap<>();
-  public static final HashMap<String, BlockEntry<StairBlock>> SHEET_STAIRS            = new HashMap<>();
-  public static final HashMap<String, BlockEntry<SlabBlock>> SHEET_SLABS              = new HashMap<>();
-  public static final HashMap<String, BlockEntry<VerticalSlabBlock>> SHEET_VERT_SLABS = new HashMap<>();
+  public static HashMap<String, BlockEntry<Block>> SHEET_METAL_BLOCKS           = new HashMap<>();
+  public static HashMap<String, BlockEntry<StairBlock>> SHEET_STAIRS            = new HashMap<>();
+  public static HashMap<String, BlockEntry<SlabBlock>> SHEET_SLABS              = new HashMap<>();
+  public static HashMap<String, BlockEntry<VerticalSlabBlock>> SHEET_VERT_SLABS = new HashMap<>();
 
-  static final HashMap<String, NonNullSupplier<Item>> METAL_LOOKUP = new HashMap<>();
+  static HashMap<String, NonNullSupplier<Item>> METAL_LOOKUP = new HashMap<>();
 
   private static void initialize () {
     METAL_LOOKUP.put("Andesite",  ()->AllBlocks.ANDESITE_CASING.get().asItem());
@@ -69,7 +71,9 @@ public class SheetMetal {
       .item()
         .properties(p -> (name.contains("Netherite")) ? p.fireResistant() : p)
         .build()
-      .recipe((ctx, prov)-> prov.stonecutting(DataIngredient.items(material.get()), ctx, 4))
+      .recipe((ctx, prov)-> {
+        prov.stonecutting(DataIngredient.items(material.get()), ctx, 4);
+      })
       .onRegister(CreateRegistrate.connectedTextures(
         new SheetMetalCTBehaviour(SpriteShifts.SHEET_METAL_SIDES.get(name)).getSupplier()
       ));

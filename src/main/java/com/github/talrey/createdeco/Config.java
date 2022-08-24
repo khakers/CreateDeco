@@ -16,8 +16,8 @@ public class Config {
 
   public static ForgeConfigSpec COMMON_CONF, CLIENT_CONF;
 
-  public static final HashMap<String, ForgeConfigSpec.ConfigValue<?>> SETTINGS = new HashMap<>();
-  public static final String CAN_PRESS_COINS = "can_press_coins";
+  public static HashMap<String, ForgeConfigSpec.ConfigValue<?>> SETTINGS = new HashMap<>();
+  public static String CAN_PRESS_COINS = "can_press_coins";
 
   static {
     ForgeConfigSpec.Builder COMMON = new ForgeConfigSpec.Builder();
